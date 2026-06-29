@@ -6,7 +6,7 @@
 void help();
 void help(std::string cmd);
 
-void run_cmd(std::string cmd);
+void run_cmd(std::string cmd, int repeat = 1);
 void http_cmd(std::string url);
 void compare_cmd(std::vector<std::string> programs);
 void file_cmd(std::string path);

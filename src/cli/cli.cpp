@@ -1,5 +1,6 @@
 #include "../core/core.hpp"
 #include <cstring>
+#include <stdexcept>
 #include <string>
 #include <vector>
 
@@ -11,7 +12,14 @@ int main(int argc, char **argv) {
     if (argc < 3) {
       help("--run");
     } else {
-      run_cmd(argv[2]);
+      int repeat = 1;
+      for (int i = 3; i < argc - 1; ++i) {
+        if (!std::strcmp(argv[i], "--repeat")) {
+          repeat = std::stoi(argv[i + 1]);
+          if (repeat < 1) repeat = 1;
+        }
+      }
+      run_cmd(argv[2], repeat);
     }
   } else if (!std::strcmp(argv[1], "--http")) {
     if (argc < 3) {
